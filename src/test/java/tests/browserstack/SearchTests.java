@@ -1,6 +1,7 @@
-package tests;
+package tests.browserstack;
 
 import org.junit.jupiter.api.Test;
+import tests.local.TestBase;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
 import static com.codeborne.selenide.Selenide.$;
