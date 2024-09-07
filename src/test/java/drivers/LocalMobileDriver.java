@@ -2,47 +2,62 @@ package drivers;
 
 import com.codeborne.selenide.WebDriverProvider;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.options.UiAutomator2Options;
 import org.openqa.selenium.Capabilities;
-import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
 
 import javax.annotation.Nonnull;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import static io.appium.java_client.remote.AutomationName.ANDROID_UIAUTOMATOR2;
+import static io.appium.java_client.remote.MobilePlatform.ANDROID;
+import static org.apache.commons.io.FileUtils.copyInputStreamToFile;
+
 public class LocalMobileDriver implements WebDriverProvider {
 
+    public static URL getAppiumServerUrl() {
+        try {
+            return new URL("http://localhost:4723");
+        } catch (MalformedURLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+    @Nonnull
     @Override
     public WebDriver createDriver(@Nonnull Capabilities capabilities) {
-        MutableCapabilities mutableCapabilities = new MutableCapabilities();
-        mutableCapabilities.merge(capabilities);
+        UiAutomator2Options options = new UiAutomator2Options();
+        options.merge(capabilities);
 
+        options.setAutomationName(ANDROID_UIAUTOMATOR2)
+                .setPlatformName(ANDROID)
+                .setDeviceName("Pixel 7 API 33")
+                .setPlatformVersion("13.0")
+                .setApp(getAppPath())
+                .setAppPackage("org.wikipedia.alpha")
+                .setAppActivity("org.wikipedia.main.MainActivity");
 
-        // Set your access credentials
-        mutableCapabilities.setCapability("browserstack.user", "qaguruqaguru_cWEn5u");
-        mutableCapabilities.setCapability("browserstack.key", "JrvHcugRGP42jAPdVsop");
+        return new AndroidDriver(getAppiumServerUrl(), options);
+    }
 
-        // Set URL of the application under test
-        mutableCapabilities.setCapability("app", "bs://c700ce60cf13ae8ed97705a55b8e022f13c5827c");
+    private String getAppPath() {
+        String appUrl = "https://github.com/wikimedia/apps-android-wikipedia/" +
+                "releases/download/latest/app-alpha-universal-release.apk";
+        String appPath = "src/test/resources/apps/app-alpha-universal-release.apk";
 
-        // Specify device and os_version for testing
-        mutableCapabilities.setCapability("device", "Google Pixel 3");
-        mutableCapabilities.setCapability("os_version", "9.0");
-
-        // Set other BrowserStack mutableCapabilities
-        mutableCapabilities.setCapability("project", "First Java Project");
-        mutableCapabilities.setCapability("build", "browserstack-build-1");
-        mutableCapabilities.setCapability("name", "first_test");
-
-
-        // Initialise the remote Webdriver using BrowserStack remote URL
-        // and desired mutableCapabilities defined above
-       try {
-           return new AndroidDriver(
-                   new URL("http://hub.browserstack.com/wd/hub"), mutableCapabilities);
-       } catch (MalformedURLException e) {
-           throw new RuntimeException(e);
-       }
-
+        File app = new File(appPath);
+        if (!app.exists()) {
+            try (InputStream in = new URL(appUrl).openStream()) {
+                copyInputStreamToFile(in, app);
+            } catch (IOException e) {
+                throw new AssertionError("Failed to download application", e);
+            }
+        }
+        return app.getAbsolutePath();
     }
 }
