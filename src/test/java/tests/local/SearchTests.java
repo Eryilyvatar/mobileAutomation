@@ -14,6 +14,10 @@ public class SearchTests extends TestBase {
 
     @Test
     void successfulSearchTest() {
+        step("Skip onboarding screen", () -> {
+            $(id("org.wikipedia.alpha:id/fragment_onboarding_skip_button")).click();
+            //back();
+        });
         step("Type search", () -> {
             $(accessibilityId("Search Wikipedia")).click();
             $(id("org.wikipedia.alpha:id/search_src_text")).sendKeys("java");

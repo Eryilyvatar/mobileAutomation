@@ -33,9 +33,11 @@ dependencies {
             "io.appium:java-client:8.3.0",
             "commons-io:commons-io:2.11.0",
             "org.junit.jupiter:junit-jupiter:5.9.2",
-            "org.slf4j:slf4j-simple:$slf4jVersion"
+            "org.slf4j:slf4j-simple:$slf4jVersion",
+            "org.aspectj:aspectjtools:1.9.22.1"
     )
 }
+
 
 tasks.withType(Test) {
     systemProperties(System.getProperties())
