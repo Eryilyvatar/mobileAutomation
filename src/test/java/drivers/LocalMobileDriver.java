@@ -6,7 +6,6 @@ import io.appium.java_client.android.options.UiAutomator2Options;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
 
-import javax.annotation.Nonnull;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -27,17 +26,17 @@ public class LocalMobileDriver implements WebDriverProvider {
         }
     }
 
-
-    @Nonnull
     @Override
-    public WebDriver createDriver(@Nonnull Capabilities capabilities) {
+    public WebDriver createDriver(Capabilities capabilities) {
         UiAutomator2Options options = new UiAutomator2Options();
         options.merge(capabilities);
 
         options.setAutomationName(ANDROID_UIAUTOMATOR2)
                 .setPlatformName(ANDROID)
-                .setDeviceName("Pixel 7 API 33")
-                .setPlatformVersion("13.0")
+//                .setDeviceName("Pixel 7 API 33")
+//                .setPlatformVersion("13.0")
+                .setDeviceName("10HC8907CS00637")
+                .setPlatformVersion("12.0")
                 .setApp(getAppPath())
                 .setAppPackage("org.wikipedia.alpha")
                 .setAppActivity("org.wikipedia.main.MainActivity");

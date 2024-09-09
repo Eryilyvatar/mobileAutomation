@@ -1,0 +1,3 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"broken","Tue Sep 03 14:45:34 MSK 2024","Tue Sep 03 14:45:48 MSK 2024","13835","","tests.local.SearchTests","","tests.local.SearchTests","successfulSearchTest","successfulSearchTest()",""
+"broken","Wed Sep 04 22:43:55 MSK 2024","Wed Sep 04 22:43:58 MSK 2024","2424","","tests.SearchTests","","tests.SearchTests","successfulSearchTest","successfulSearchTest()",""
