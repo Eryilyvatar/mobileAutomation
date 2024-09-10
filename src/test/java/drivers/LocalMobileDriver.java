@@ -33,10 +33,10 @@ public class LocalMobileDriver implements WebDriverProvider {
 
         options.setAutomationName(ANDROID_UIAUTOMATOR2)
                 .setPlatformName(ANDROID)
-//                .setDeviceName("Pixel 7 API 33")
-//                .setPlatformVersion("13.0")
-                .setDeviceName("10HC8907CS00637")
-                .setPlatformVersion("12.0")
+                .setDeviceName("Pixel 7 API 33")
+                .setPlatformVersion("13.0")
+//                .setDeviceName("10HC8907CS00637")
+//                .setPlatformVersion("12.0")
                 .setApp(getAppPath())
                 .setAppPackage("org.wikipedia.alpha")
                 .setAppActivity("org.wikipedia.main.MainActivity");
