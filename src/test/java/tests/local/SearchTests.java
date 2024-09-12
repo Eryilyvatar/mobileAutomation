@@ -1,6 +1,6 @@
 package tests.local;
 
-import com.codeborne.selenide.Condition;
+
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
@@ -15,12 +15,19 @@ import static io.qameta.allure.Allure.step;
 public class SearchTests extends TestBase {
 
     @Test
-    void onboardingScreenTest() {
+    void onboardingFirstScreenTest() {
         step("First step onboarding", () -> {
             $(id("org.wikipedia.alpha:id/primaryTextView"))
                     .shouldHave(text("The Free Encyclopedia"));
             $(id("org.wikipedia.alpha:id/secondaryTextView"))
                     .shouldHave(text("found the following on your device:"));
+        });
+    }
+
+
+    @Test
+    void onboardingSecondScreenTest() {
+        step("First step onboarding", () -> {
             $(id("org.wikipedia.alpha:id/fragment_onboarding_forward_button")).click();
         });
         step("Second step onboarding", () -> {
@@ -28,6 +35,15 @@ public class SearchTests extends TestBase {
                     .shouldHave(text("New ways to explore"));
             $(id("org.wikipedia.alpha:id/secondaryTextView"))
                     .shouldHave(text("Dive down the Wikipedia rabbit hole with a constantly updating Explore feed."));
+        });
+    }
+
+    @Test
+    void onboardingThirdScreenTest() {
+        step("First step onboarding", () -> {
+            $(id("org.wikipedia.alpha:id/fragment_onboarding_forward_button")).click();
+        });
+        step("Second step onboarding", () -> {
             $(id("org.wikipedia.alpha:id/fragment_onboarding_forward_button")).click();
         });
         step("Third step onboarding", () -> {
@@ -35,6 +51,18 @@ public class SearchTests extends TestBase {
                     .shouldHave(text("Reading lists with sync"));
             $(id("org.wikipedia.alpha:id/secondaryTextView"))
                     .shouldHave(text("You can make reading lists from articles you want to read later"));
+        });
+    }
+
+    @Test
+    void onboardingFourthScreenTest() {
+        step("First step onboarding", () -> {
+            $(id("org.wikipedia.alpha:id/fragment_onboarding_forward_button")).click();
+        });
+        step("Second step onboarding", () -> {
+            $(id("org.wikipedia.alpha:id/fragment_onboarding_forward_button")).click();
+        });
+        step("Third step onboarding", () -> {
             $(id("org.wikipedia.alpha:id/fragment_onboarding_forward_button")).click();
         });
         step("Fourth step onboarding", () -> {
@@ -42,9 +70,9 @@ public class SearchTests extends TestBase {
                     .shouldHave(text("Data & Privacy"));
             $(id("org.wikipedia.alpha:id/secondaryTextView"))
                     .shouldHave(text("We believe that you should not have to provide personal information to participate in the free knowledge movement. Usage data collected for this app is anonymous. Learn more about our privacy policy and terms of use."));
-            $(id("org.wikipedia.alpha:id/fragment_onboarding_done_button")).click();
         });
     }
+
 
     @Test
     void successfulSearchTest() {
