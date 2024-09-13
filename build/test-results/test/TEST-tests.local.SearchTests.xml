@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="tests.local.SearchTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-09-09T19:28:38" hostname="LACKYTESLYUK" time="40.505">
+<testsuite name="tests.local.SearchTests" tests="5" skipped="0" failures="0" errors="0" timestamp="2024-09-13T18:28:32" hostname="LACKYTESLYUK" time="67.341">
   <properties/>
-  <testcase name="successfulSearchTest()" classname="tests.local.SearchTests" time="40.505"/>
+  <testcase name="onboardingThirdScreenTest()" classname="tests.local.SearchTests" time="19.202"/>
+  <testcase name="successfulSearchTest()" classname="tests.local.SearchTests" time="17.978"/>
+  <testcase name="onboardingSecondScreenTest()" classname="tests.local.SearchTests" time="9.68"/>
+  <testcase name="onboardingFourthScreenTest()" classname="tests.local.SearchTests" time="11.289"/>
+  <testcase name="onboardingFirstScreenTest()" classname="tests.local.SearchTests" time="9.18"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
